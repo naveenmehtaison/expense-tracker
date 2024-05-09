@@ -8,6 +8,7 @@ const Myroutes=()=>{
             <Route path='/home' element={<Home/>} />
             <Route path='/' element={<Login/>}/>
             <Route path = '/form' element={<Form/>}/>
+            <Route path='/login' element={<Login/>}/>
 
         </Routes>
 

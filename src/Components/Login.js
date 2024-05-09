@@ -33,6 +33,7 @@ const Login=()=>{
         if(obj.Password!==obj.Password2){
           
           console.log('password does not match')
+          alert('password not matched')
             return
         }
 
@@ -43,8 +44,10 @@ const Login=()=>{
             returnSecureToken: true 
         })
         console.log('signed up succesfu;;y')
+        alert('account created')
       }
       catch(err){
+        alert(err)
           console.log(err + 'erroer occured')
              
       }
@@ -77,13 +80,15 @@ const Login=()=>{
             console.log(fin_email)
             // toast.success('login SUccesfull')
             toastify()
+            navigate('/home')
 
         }
         catch(err){
+          alert(err)
             console.log(err + 'erroer occured')
         }
         // console.log(Ctx)
-        navigate('/home')
+        
 
 
     }
