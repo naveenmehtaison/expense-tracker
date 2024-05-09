@@ -1,6 +1,6 @@
 import axios from 'axios' 
 import { useNavigate } from 'react-router-dom'
-import { useState,useContext } from 'react'
+import { useState } from 'react'
 
 import classes from './login.module.css'
 import React from 'react'
@@ -18,7 +18,13 @@ const Login=()=>{
     const toastify=()=>{
       toast.success('logged in ')
     }
-    const notify = () => toast("Wow so easy!");
+    const notify = () => {
+      toast("Wow so easy!")
+      console.log('notify called')
+      // alert('notifyyed')
+      
+
+    };
     async function handlesignup(e){
       try{
         e.preventDefault()
@@ -108,7 +114,7 @@ const Login=()=>{
 
             </div>
           }
-          <button onClick={notify}>NOtify</button>
+          <button onClick={()=>{notify()}}>NOtify</button>
 
           { login && 
           <div className={classes.loginpage}>
