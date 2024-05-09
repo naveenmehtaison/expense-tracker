@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import Expenseshower from "./Expenseshower"
 const Home=()=>{
 
     const navigate = useNavigate()
@@ -12,6 +13,7 @@ const Home=()=>{
         localStorage.setItem('email','')
         navigate('/login')
     }
+
     async function verifyEmail(){
         try{
             const token = (localStorage.getItem('token')).toString()
@@ -34,6 +36,7 @@ const Home=()=>{
 
             <button onClick={verifyEmail}>Verify Email</button>
             <button onClick={logout}>Log Out</button>
+            <Expenseshower/>
         </>
 
     )
