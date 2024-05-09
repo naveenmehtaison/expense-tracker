@@ -1,10 +1,38 @@
-import { useState } from "react"
+import axios from "axios"
+import { useState,useEffect } from "react"
 const Expenseshower=()=>{
     const [expense,setexpense]=useState([])
-    const handleexpense=(e)=>{
+    useEffect(()=>{
+        async function fetchdata(){
+            try{
+                const res = await axios.get('https://authentication-1f2ad-default-rtdb.firebaseio.com/expense.json')
+                // console.log(res.data.map((ele,item)=>(
+                //     <p>{ele}</p>
+                // )))
+                const dataArray = Object.entries(res.data).map(([key, value]) => {
+                    return { id: key, ...value };
+                });
+                setexpense(dataArray)
+            }
+            catch(err){
+                console.log('err')
+            }
+
+        }
+        fetchdata()
+    },[])
+async function handleexpense(e){
         e.preventDefault()
+
         const obj = {SPENT:e.target.spent.value,Des:e.target.des.value,Selector:e.target.selector.value}
-        setexpense([obj,...expense])
+        try{
+            const res = await axios.post('https://authentication-1f2ad-default-rtdb.firebaseio.com/expense.json',obj)
+            setexpense([obj,...expense])
+        }
+        catch(err){
+            console.log(err)
+        }
+        
         console.log(expense)
         
 
