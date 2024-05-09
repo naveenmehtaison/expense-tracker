@@ -33,6 +33,7 @@ const Form = ()=>{
                 returnSecureToken: true 
             })
             console.log(res.data)
+            alert('email verified sucessfully')
         }
         catch(err){
             console.log(err)

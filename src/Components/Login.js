@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import classes from './login.module.css'
 import React from 'react'
-
+import Forgetpassword from './Forgetpassword'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const Login=()=>{
     const [login,setlogin] = useState(true)
+    const [forgpass,setforgpass] = useState(false)
 
     const navigate = useNavigate()
 
@@ -25,6 +26,7 @@ const Login=()=>{
       
 
     };
+
     async function handlesignup(e){
       try{
         e.preventDefault()
@@ -114,12 +116,14 @@ const Login=()=>{
                     </div>
                 </form>
                     <button  style={{background:'lightgreen'}}onClick={()=>{setlogin(!login)}}>Create A new account</button>
+                    <span style={{cursor:'pointer'}} onClick={()=>{setforgpass(!forgpass)}} >Forget Password</span>
+                    {forgpass && navigate('/forgetpassword')}
                     <div/>
               </div>
 
             </div>
           }
-          <button onClick={()=>{notify()}}>NOtify</button>
+
 
           { login && 
           <div className={classes.loginpage}>
@@ -139,6 +143,7 @@ const Login=()=>{
               </div>
             </form>
             <button  style={{background:'lightgreen'}}onClick={()=>{setlogin(!login)}}>ALready have an account</button>
+
             </div>
             
           </div>}
