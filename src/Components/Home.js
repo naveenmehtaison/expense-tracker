@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom"
 import Expenseshower from "./Expenseshower"
 import { useDispatch,useSelector } from "react-redux"
 import { StoreActions2 } from "./Store/auth"
+
 const Home=()=>{
+    const Theme = useSelector((state)=>state.Theme.curstate)
     const Token = useSelector((state)=>state.auth.token)
     const Dispatch = useDispatch()
     const navigate = useNavigate()
@@ -35,14 +37,14 @@ const Home=()=>{
         }
     }
     return(
-        <>
+        <div style={!Theme ? { backgroundColor: '#f0f0f0'} : {backgroundColor: "#292c35"}}>
             <h1>Welcome to expense Tracker</h1>
             <p>YOur profile is incomplete<NavLink to='/form'> <p style={{color:'blue', cursor:'pointer'}}>Click here to complete</p></NavLink></p>
 
             <button onClick={verifyEmail}>Verify Email</button>
             <button onClick={logout}>Log Out</button>
             <Expenseshower/>
-        </>
+        </div>
 
     )
 }

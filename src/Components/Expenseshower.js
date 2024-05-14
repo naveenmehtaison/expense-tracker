@@ -2,12 +2,22 @@ import axios from "axios"
 import { useState,useEffect,useRef } from "react"
 import { useSelector,useDispatch } from "react-redux";
 import { StoreActions } from "./Store/ExpenseReducer";
+import Button from "./PremiumActivities/Button";
+import FileDownloader from "./PremiumActivities/FileDownloader";
 
 const Expenseshower=()=>{
     const [amount,setpremiumamount]= useState(0)
-    if(amount>10000){
-        alert('you need to purcahse premium ')
+    const [per,setper]=useState(false)
+    if(amount>10000 && !per){
+        alert('you have to buy premium')
+        setper(true)
+        
     }
+    if(amount<10000 && per){
+        setper(false)      
+    }
+    const Theme = useSelector((state)=>state.Theme.curstate)
+    console.log(Theme)
     const [editid,seteleid] = useState('')
     const Dispatch = useDispatch()
     const expenseRedux = useSelector((state)=>state.expense.arr)
@@ -15,7 +25,7 @@ const Expenseshower=()=>{
     const desRef = useRef(null);
     const selectorRef = useRef(null);
     const [expense,setexpense]=useState()
-    const [per,setper]=useState()
+    
     const [edit,setedit] = useState(false)
     useEffect(()=>{
 
@@ -151,8 +161,20 @@ async function handleexpense(e,e2){
     console.log(amount)
     // console.log(per)
     return(
-        <>
+        <div style={!Theme ? { backgroundColor: '#f0f0f0'} : {backgroundColor: "#292c35"}}>
             <div>
+                {per && <>
+                    <div>
+                        <div>
+                            <Button/>
+                            <button>Buy Premium</button>
+                        </div>
+                    </div>
+                
+                
+                
+                </>}
+                <FileDownloader props={expenseRedux}/>
                 <div>
                     <form onSubmit={handleexpense}>
                         <label htmlFor="spent">Money Spent</label>
@@ -172,12 +194,12 @@ async function handleexpense(e,e2){
             
             
             </div>
-            <div style={{border:'100px',borderColor:'black',backgroundColor:'#f0f0f0'}}>
+            <div >
             {expenseRedux.map((ele, item) => {
 
                 
                 return (
-                    <div key={item}>
+                    <div key={item} >
                         <h3>{ele.SPENT}</h3>
                         <h3>{ele.Des}</h3>
                         <h3>{ele.Selector}</h3>
@@ -191,7 +213,7 @@ async function handleexpense(e,e2){
 
 
             </div>
-        </>
+        </div>
     )
 }
 export default Expenseshower
