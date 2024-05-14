@@ -33,7 +33,8 @@ const Form = ()=>{
                 returnSecureToken: true 
             })
             console.log(res.data)
-            alert('email verified sucessfully')
+            alert('changes updated sucessfully')
+            
         }
         catch(err){
             console.log(err)

@@ -1,16 +1,23 @@
 import axios from 'axios' 
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-
+import {useDispatch,useSelector} from 'react-redux'
 import classes from './login.module.css'
 import React from 'react'
+import { StoreActions2 } from "./Store/auth";
 import Forgetpassword from './Forgetpassword'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+ import { login, logout, istoken, nottoken, userid, notuserid } from './Store/auth'
 
 
 
 const Login=()=>{
+
+
+    const isauth =  useSelector(state=>state.auth.isauth)
+    const email =  useSelector(state=>state.auth.id)
+    const Dispatch = useDispatch()
     const [login,setlogin] = useState(true)
     const [forgpass,setforgpass] = useState(false)
 
@@ -69,6 +76,8 @@ const Login=()=>{
             const arr = obj.Email.split("")
             console.log(response.data.idToken)
             localStorage.setItem('token',response.data.idToken)
+            Dispatch(StoreActions2.login())
+            Dispatch(StoreActions2.istoken())
             
 
             const fil_arr = arr.filter((ele,item)=>(
@@ -77,10 +86,10 @@ const Login=()=>{
             const fin_email = fil_arr.join('')
             console.log(fin_email)
             console.log(fin_email)
-            // Ctx.email(fin_email)
             localStorage.setItem('email',fin_email)
+            Dispatch(userid(fin_email))
+            console.log(email,isauth)
             console.log(fin_email)
-            // toast.success('login SUccesfull')
             toastify()
             navigate('/home')
 
@@ -89,15 +98,25 @@ const Login=()=>{
           alert(err)
             console.log(err + 'erroer occured')
         }
-        // console.log(Ctx)
-        
-
 
     }
+    const hanldetoggle=() => { 
+      if(isauth){
+        
+        Dispatch(StoreActions2.logout()) 
+        console.log('inside toggle' , isauth)
+        
+      }
+      else{
+        Dispatch(StoreActions2.login())
+        console.log('else' , isauth)
+     }
+    }
+    
     return(
         <>
   
-          { !login && 
+          { !isauth && 
             <div className={classes.loginpage}>
               <div className={classes.form}>
               
@@ -115,7 +134,8 @@ const Login=()=>{
                       <button type='submit'>Submit</button>
                     </div>
                 </form>
-                    <button  style={{background:'lightgreen'}}onClick={()=>{setlogin(!login)}}>Create A new account</button>
+                <button style={{background:'lightgreen'}} onClick={()=>{hanldetoggle()}}>Create A new account</button>
+
                     <span style={{cursor:'pointer'}} onClick={()=>{setforgpass(!forgpass)}} >Forget Password</span>
                     {forgpass && navigate('/forgetpassword')}
                     <div/>
@@ -125,7 +145,7 @@ const Login=()=>{
           }
 
 
-          { login && 
+          { isauth && 
           <div className={classes.loginpage}>
             <div className={classes.form}>
               <form onSubmit={handlesignup} >
@@ -142,7 +162,7 @@ const Login=()=>{
                 <button type='submit'>Submit</button>
               </div>
             </form>
-            <button  style={{background:'lightgreen'}}onClick={()=>{setlogin(!login)}}>ALready have an account</button>
+            <button  style={{background:'lightgreen'}} onClick={()=>{hanldetoggle()}}>ALready have an account</button>
 
             </div>
             

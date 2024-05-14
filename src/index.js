@@ -8,19 +8,23 @@ import Routes from './Components/Routes';
 import { BrowserRouter } from 'react-router-dom';
 import Myroutes from './Components/Routes';
 import { ToastContainer, toast } from 'react-toastify'
+import { Provider } from 'react-redux';
+import Store from './Components/Store/Redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  
+    <React.StrictMode>
+      <BrowserRouter>
+      <Provider store={Store}>
+        {/* <Myroutes> */}
+          <App/>
+        {/* </Myroutes>  */}
 
-      {/* <Myroutes> */}
-        <App/>
-      {/* </Myroutes>  */}
+        </Provider>
+      </BrowserRouter>
+    </React.StrictMode>
 
-      
-    </BrowserRouter>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
