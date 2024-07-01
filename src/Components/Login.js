@@ -26,7 +26,7 @@ const Login=()=>{
     const toastify=()=>{
       toast.success('logged in ')
     }
-
+    console.log('hii')
 
     async function handlesignup(e){
       try{
@@ -39,6 +39,7 @@ const Login=()=>{
           alert('password not matched')
             return
         }
+    
 
         console.log(obj)
         await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBDR5SSxYk2jPHpBjbYZNPoa76PPAmRPdo', {
