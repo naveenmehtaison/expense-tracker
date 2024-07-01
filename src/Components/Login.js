@@ -8,7 +8,7 @@ import { StoreActions2 } from "./Store/auth";
 import Forgetpassword from './Forgetpassword'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
- import { login, logout, istoken, nottoken, userid, notuserid } from './Store/auth'
+import { login, logout, istoken, nottoken, userid, notuserid } from './Store/auth'
 
 
 
@@ -71,8 +71,6 @@ const Login=()=>{
                 password: obj.Password,
                 returnSecureToken: true 
             })
-            
-            // Ctx.login()
             const arr = obj.Email.split("")
             console.log(response.data.idToken)
             localStorage.setItem('token',response.data.idToken)
@@ -130,7 +128,7 @@ const Login=()=>{
                       <label htmlFor='email'>Email</label>
                       <input id='email' required></input>
                       <label htmlFor='password'>Password</label>
-                      <input id='password' required></input>
+                      <input id='password'  type='password'required></input>
                       <button type='submit'>Submit</button>
                     </div>
                 </form>

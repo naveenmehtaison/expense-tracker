@@ -15,7 +15,7 @@ import Expenseshower from './Expenseshower';
 
 describe('expense checker', () => {
     test('renders Money Spent text', () => {
-        render(<Expenseshower />);
+        const screen = render(<Expenseshower />);
         const moneySpentElement = screen.getByText('Money Spent');
         expect(moneySpentElement).toBeInTheDocument();
     });

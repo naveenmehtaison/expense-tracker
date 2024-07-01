@@ -6,7 +6,7 @@ const Form = ()=>{
     const Ref = useRef(null)
     useEffect(()=>{
         async function fetchdata(){
-            const res= await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDR5SSxYk2jPHpBjbYZNPoa76PPAmRPdo',{
+            const res= await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBzTz45cN1TkXStJ_HeGJ00t4OQJ8uY6wY',{
                 idToken: localStorage.getItem('token')
             })
             console.log(res.data)
@@ -26,7 +26,7 @@ const Form = ()=>{
         
         e.preventDefault()
         try{
-            const res = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBDR5SSxYk2jPHpBjbYZNPoa76PPAmRPdo',{
+            const res = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBzTz45cN1TkXStJ_HeGJ00t4OQJ8uY6wY',{
                 idToken: localStorage.getItem('token'),
                 displayName: e.target.name.value,
                 photourl:e.target.link.value,

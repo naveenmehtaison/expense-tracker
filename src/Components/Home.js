@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import Expenseshower from "./Expenseshower"
 import { useDispatch,useSelector } from "react-redux"
 import { StoreActions2 } from "./Store/auth"
+import { Logo } from "./Utilities/types"
 
 const Home=()=>{
     const Theme = useSelector((state)=>state.Theme.curstate)
@@ -25,7 +26,7 @@ const Home=()=>{
         try{
             const token = (Token.toString())
             console.log(typeof(token))
-            const res = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBDR5SSxYk2jPHpBjbYZNPoa76PPAmRPdo',{
+            const res = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBzTz45cN1TkXStJ_HeGJ00t4OQJ8uY6wY',{
                 requestType:'VERIFY_EMAIL',
                 idToken:token
 
@@ -37,14 +38,33 @@ const Home=()=>{
         }
     }
     return(
-        <div style={!Theme ? { backgroundColor: '#f0f0f0'} : {backgroundColor: "#292c35"}}>
-            <h1>Welcome to expense Tracker</h1>
-            <p>YOur profile is incomplete<NavLink to='/form'> <p style={{color:'blue', cursor:'pointer'}}>Click here to complete</p></NavLink></p>
+        <>
+            <div className='bg-red-800 h-20 p-6 items-center justify-center font-semibold text-4xl flex '>
+                <img className="h-12 " src={Logo} alt="Logo"></img>
+                <p>Welcome To Expense Tracker</p>
+                <button className="bg-yellow-400 px-1 text-xl py-1 ml-40 absolute right-0 m-2 rounded-lg" onClick={logout} >Log Out</button>
 
-            <button onClick={verifyEmail}>Verify Email</button>
-            <button onClick={logout}>Log Out</button>
+                
+
+                
+                
+            </div>
+            
+            <div style={!Theme ? { backgroundColor: '#f0f0f0'} : {backgroundColor: "#292c35"}}>
+                
+                
+                <div className="bg-sky">
+                <p>YOur profile is incomplete<NavLink to='/form'> <p style={{color:'blue', cursor:'pointer'}}>Click here to complete</p></NavLink></p>
+
+                <button className = 'bg-blue-400 px-1 text-xl py-1 ml-40 absolute right-0 m-2 rounded-full' onClick={verifyEmail}>Verify Email</button>
+                
+                </div>
+                
+            </div>
+            <div>
             <Expenseshower/>
-        </div>
+            </div>
+        </>
 
     )
 }
