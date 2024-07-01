@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Routes from './Components/Routes';
 import { BrowserRouter } from 'react-router-dom';
-import Myroutes from './Components/Routes';
-import { ToastContainer, toast } from 'react-toastify'
 import { Provider } from 'react-redux';
 import Store from './Components/Store/Redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));

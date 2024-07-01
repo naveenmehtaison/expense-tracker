@@ -18,7 +18,7 @@ const Login=()=>{
     const isauth =  useSelector(state=>state.auth.isauth)
     const email =  useSelector(state=>state.auth.id)
     const Dispatch = useDispatch()
-    const [login,setlogin] = useState(true)
+
     const [forgpass,setforgpass] = useState(false)
 
     const navigate = useNavigate()
@@ -26,13 +26,7 @@ const Login=()=>{
     const toastify=()=>{
       toast.success('logged in ')
     }
-    const notify = () => {
-      toast("Wow so easy!")
-      console.log('notify called')
-      // alert('notifyyed')
-      
 
-    };
 
     async function handlesignup(e){
       try{
