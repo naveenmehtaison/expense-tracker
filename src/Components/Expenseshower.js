@@ -29,13 +29,13 @@ const Expenseshower=()=>{
     const spentRef = useRef(null);
     const desRef = useRef(null);
     const selectorRef = useRef(null);
-    const [expense,setexpense]=useState()
+    const [expense,]=useState()
     
     const [edit,setedit] = useState(false)
     useEffect(()=>{
 
         fetchdata()
-    },[])
+    })
     async function fetchdata(){
         console.log('fetching')
         try{
@@ -78,7 +78,7 @@ const Expenseshower=()=>{
         console.log(ele,'inside delete func')
         try{
 
-            const res = await axios.delete(`https://expensetracker-27a82-default-rtdb.firebaseio.com/expense/${ele.id}.json`)
+            await axios.delete(`https://expensetracker-27a82-default-rtdb.firebaseio.com/expense/${ele.id}.json`)
             // const res2 = await axios.get('https://authentication-1f2ad-default-rtdb.firebaseio.com/expense.json')
             // const dataArray = Object.entries(res2.data).map(([key, value]) => {
             //     return { id: key, ...value };
@@ -98,7 +98,7 @@ async function handleexpense(e,e2){
 
         e.preventDefault()
         console.log(e)
-        const d = new Date
+        const d = new Date()
 
 
         const obj = {SPENT:e.target.spent.value,Des:e.target.des.value,Selector:e.target.selector.value, date:`${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`,time:`${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`}
@@ -139,7 +139,7 @@ async function handleexpense(e,e2){
         const obj = { SPENT:spentRef.current.value,Des:desRef.current.value,Selector:selectorRef.current.value}
         console.log(obj)
         try{
-            const res = await axios.put(`https://expensetracker-27a82-default-rtdb.firebaseio.com//expense/${ele.id}.json`,obj)
+            await axios.put(`https://expensetracker-27a82-default-rtdb.firebaseio.com//expense/${ele.id}.json`,obj)
   
             Dispatch(StoreActions.setexpense({...obj,id:ele.id})) 
             setpremiumamount(amount - parseInt(ele.SPENT))

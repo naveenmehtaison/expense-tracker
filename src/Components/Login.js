@@ -41,7 +41,7 @@ const Login=()=>{
         }
 
         console.log(obj)
-        const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBDR5SSxYk2jPHpBjbYZNPoa76PPAmRPdo', {
+        await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBDR5SSxYk2jPHpBjbYZNPoa76PPAmRPdo', {
             email: obj.Email,
             password: obj.Password,
             returnSecureToken: true 
