@@ -9,29 +9,14 @@ import {
   PieChart,
   Pie,
   BarChart,
-  Bar,
-  RadialBarChart,
-  RadialBar,
-  Legend
-} from "recharts";
+  Bar} from "recharts";
 import { useSelector } from "react-redux";
-import dayjs from "dayjs";
 
 function Analytics() {
-  const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, ];
   const Theme = useSelector((state)=>state.Theme.curstate)
 
 
-const renderLineChart = (
-  <LineChart width={600} height={300} data={data}>
-    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-    <CartesianGrid stroke="#ccc" />
-    <XAxis dataKey="name" />
-    <YAxis />
-  </LineChart>
-);
   const expenseRedux = useSelector((state) => state.expense.arr);
-  const backgroundColor = useSelector((state) => state.expense.backgroundColor);
   const formatDate = (dateStr) => {
     const [day, month, year] = dateStr.split("-").map(Number); // Convert string to numbers
     const correctDate = new Date(year, month - 1, day); // Adjust month (0-based index)
@@ -73,7 +58,7 @@ const renderLineChart = (
   }));
   const calculateMonthlyTotal = calculateExpensesPerMonth(expenseRedux);
   return (
-<div className="bg-gray-900 min-h-screen p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+<div className={`bg-gray-900 min-h-screen p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 ${Theme==='white'? 'bg-gray-50':'bg-gray-9500'} gap-4`} >
   
   {/* Line Chart */}
   <div className=" p-4 w-auto rounded-lg shadow-lg" style={{backgroundColor: Theme}}>
