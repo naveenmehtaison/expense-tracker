@@ -3,13 +3,8 @@ import { ThemeReduceraction } from "../Store/themeReducer";
 import { useDispatch,useSelector } from "react-redux";
 const Button=()=>{
     const Dispatch = useDispatch()
-    const Theme = useSelector((state)=>state.curstate)
     const switchDarkMode=()=>{
-        console.log('iam inside siwtchdarkmodwe')
         Dispatch(ThemeReduceraction.setdaymode(true))
-        
-
-
     }
 
     return(

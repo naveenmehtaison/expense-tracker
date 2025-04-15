@@ -2,7 +2,6 @@ import classes from './login.module.css'
 import axios from 'axios'
 const Forgetpassword=()=>{
     async function hanldeforgetpassword(e){
-        console.log(e.target.email.value)
         try{
           const res = axios.post('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBDR5SSxYk2jPHpBjbYZNPoa76PPAmRPdo',{
             requestType:"PASSWORD_RESET",

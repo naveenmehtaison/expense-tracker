@@ -1,11 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialstate={curstate:false}
+const initialstate={curstate:'white'}
 const Themereducer=createSlice({
     name:'Theme',
     initialState:initialstate,
     reducers:{
         setdaymode(state,action){
-            state.curstate=!state.curstate
+            if(state.curstate==='white'){
+                state.curstate='#111827'
+            }
+            else{
+                state.curstate='white'
+            }
+            // state.curstate=!state.curstate
         }
     }
 })

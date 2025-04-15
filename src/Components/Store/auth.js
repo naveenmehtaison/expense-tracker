@@ -12,15 +12,12 @@ const counterSlice2= createSlice({
         },
         istoken(state){
             state.token=localStorage.getItem('token')
-            console.log(state.token)
         },
         nottoken(state){
             state.token=''
         },
         userid(state,action){
             state.id=action.payload
-            console.log(state.id)
-            console.log(action.payload)
         },
         notuserid(state){
             state.id=''
