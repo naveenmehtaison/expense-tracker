@@ -89,6 +89,7 @@ const Expenseshower = () => {
         tempamount += parseInt(dataArray[i].SPENT);
       }
       setpremiumamount(tempamount);
+      Dispatch(StoreActions.settotalexpense(tempamount));
 
       // setexpense(dataArray)
       // setper(dataArray)
@@ -111,6 +112,7 @@ const Expenseshower = () => {
       // setexpense(dataArray)
       Dispatch(StoreActions.setdelete(showDelModal));
       setpremiumamount(amount - parseInt(showDelModal?.SPENT));
+      Dispatch(StoreActions.settotalexpense(amount));
     } catch {
       console.log("err");
     }
@@ -136,6 +138,7 @@ const Expenseshower = () => {
       obj.id = res.data.name;
       Dispatch(StoreActions.setexpense(obj));
       setpremiumamount(amount + parseInt(obj.SPENT));
+      Dispatch(StoreActions.settotalexpense(amount));
     } catch (err) {
       console.log(err);
     }
@@ -161,6 +164,7 @@ const Expenseshower = () => {
       Dispatch(StoreActions.setexpense({ ...obj, id: ele.id }));
       setpremiumamount(amount - parseInt(ele.SPENT));
       setpremiumamount(amount + parseInt(obj.SPENT));
+      Dispatch(StoreActions.settotalexpense(amount));
     } catch (err) {
       console.log(err);
     }
