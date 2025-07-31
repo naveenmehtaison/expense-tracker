@@ -23,7 +23,6 @@ const Form = () => {
       Ref.current.value = res.data.users[0].displayName;
       let name = document.getElementById("name");
       name.value = res.data.users[0].displayName;
-      console.log(res.data.users[0].displayName);
     }
     fetchdata();
   }, []);

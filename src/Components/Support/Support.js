@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import image from "../../Assets/image.png";
 const Support = () => {
   const Theme = useSelector((state) => state.Theme.curstate);
-  console.log(Theme, "theme in about ");
   return (
     <div className="bg-gray-900  h-full" style={{ backgroundColor: Theme }}>
       <div className="max-w-6xl mx-auto px-4 py-12">
@@ -32,7 +31,7 @@ const Support = () => {
               <img
                 src={image}
                 alt="Profile"
-                className="rounded-2xl  h-80 w-full shadow-xl border-4 border-white dark:border-gray-800"
+                className="rounded-2xl   h-80 w-full shadow-xl border-4 border-white dark:border-gray-800"
               />
             </div>
           </div>
